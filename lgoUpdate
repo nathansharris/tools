@@ -8,7 +8,7 @@ while test $# -gt 0; do
             if test $# -gt 0; then
                 export LGO=$1
             else
-                echo "lgo flag set, but no populion history (--lgo) file provided."
+                echo "Lgo flag set, but no populion history (--lgo) file provided."
                 exit 1
             fi
             shift
@@ -18,7 +18,7 @@ while test $# -gt 0; do
             if test $# -gt 0; then
                 export UPDATE=$1
             else
-                echo "No populion history (--lgo) file provided."
+                echo "Update flag set, but no update file given. "
                 exit 1
             fi
             shift
@@ -28,7 +28,7 @@ while test $# -gt 0; do
             if test $# -gt 0; then
                 export OUTPUT=$1
             else
-                echo "No populion history (--lgo) file provided."
+                echo "Output flag set, but no output file specified."
                 exit 1
             fi
             shift
@@ -41,12 +41,27 @@ while test $# -gt 0; do
     esac
 done
 
+if [ -z ${LGO+x} ];
+	then echo "No lgo file specified";
+	exit;
+fi
+if [ -z ${UPDATE+x} ];
+	then echo "No update file provdided";
+	exit;
+fi
+if [ -z ${OUTPUT+x} ];
+	then echo "No output file specified";
+	exit;
+fi
+	
+
+
 echo "File to update: $LGO"
 echo "New values to use: $UPDATE"
 echo "File to write: $OUTPUT"
 
 declare -A NEW
-for i in `awk '{$1=$1;print}' b2.legofit | 
+for i in `awk '{$1=$1;print}' $UPDATE | 
         grep -e ^twoN -e ^m -e ^T | 
         awk '{print $1"="$3}' `;
     do NEW[`echo $i | cut -f1 -d"="`]=`echo $i | cut -f2 -d"="`;
