@@ -43,14 +43,32 @@ done
 
 if [ -z ${LGO+x} ];
 	then echo "No lgo file specified";
+	echo;
+	echo "lgoUpdate requires:";
+	echo "--lgo file: the lgo file to be updated.";
+	echo "--update file: A .legofit file that";
+	echo "	contains the new values you wish to use.";
+	echo "--output file: The file you wish to write.";
 	exit;
 fi
 if [ -z ${UPDATE+x} ];
 	then echo "No update file provdided";
+	echo;
+        echo "lgoUpdate requires:";
+        echo "--lgo file: the lgo file to be updated.";
+        echo "--update file: A .legofit file that";
+        echo "  contains the new values you wish to use.";
+        echo "--output file: The file you wish to write.";
 	exit;
 fi
 if [ -z ${OUTPUT+x} ];
 	then echo "No output file specified";
+	echo;
+        echo "lgoUpdate requires:";
+        echo "--lgo file: the lgo file to be updated.";
+        echo "--update file: A .legofit file that";
+        echo "  contains the new values you wish to use.";
+        echo "--output file: The file you wish to write.";
 	exit;
 fi
 	
